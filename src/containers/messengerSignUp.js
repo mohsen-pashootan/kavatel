@@ -128,6 +128,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
       {Modes.SignUp && (
         <SingleInput
           type={dataLogin.inputType}
+          inputMode="numeric"
           label={dataLogin.inputLabel}
           name={dataLogin.input_name}
           errors={errors[dataLogin.input_name]}
@@ -153,6 +154,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
         <React.Fragment>
           <SingleInput
             type={dataLogin.inputTypeName}
+            inputMode="text"
             label={dataLogin.inputLabelName}
             name={dataLogin.input_name_username}
             errors={errors[dataLogin.input_name_username]}
@@ -161,6 +163,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
           />
           <SingleInput
             type={dataLogin.inputTypeEmail}
+            inputMode="email"
             label={dataLogin.inputLabeEmail}
             value={email}
             name={dataLogin.input_name_email}
@@ -169,6 +172,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
           />
           <SingleInput
             type={dataLogin.inputTypePassword}
+            inputMode="text"
             label={dataLogin.inputLabelPassword}
             value={password}
             name={dataLogin.input_name_password}
