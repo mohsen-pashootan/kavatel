@@ -16,7 +16,6 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
   const history = useHistory();
 
   const dataLogin = Seeder[mode].options;
-  const inputsData = Seeder[mode].input_Attributes;
 
   const Modes = {
     Login: mode === "login 1",
@@ -42,7 +41,6 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
     if (Modes.PassEnter && password.trim() === "")
       errors.password = "رمز عبور ضروری است";
 
-    console.log();
     return Object.keys(errors).length === 0 ? {} : errors;
   };
 
@@ -77,6 +75,7 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
         return;
       }
       setPhoneNumber(inputValue);
+      setErrors(newErrors);
     }
     if (Modes.PassEnter) setPassword(inputValue);
     setErrors(newErrors);
@@ -100,9 +99,9 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
       {(Modes.Login || Modes.PassEnter) && (
         <SingleInput
           type={dataLogin.inputType}
-          errors={errors[inputsData.name]}
+          errors={errors[dataLogin.input_name]}
           label={dataLogin.inputLabel}
-          name={inputsData.name}
+          name={dataLogin.input_name}
           value={Modes.Login ? phoneNumber : password}
           onComplete={handleSingleInput}
         />

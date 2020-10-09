@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./messengerSignUp.scss";
 import Button from "../components/button";
 import FancyImage from "../components/fancyImage";
-import { Input } from "../components/input";
 import NavCircles from "../components/navCircles";
 import Title from "../components/title";
 import Seeder from "../constants/seeder.json";
@@ -10,9 +9,10 @@ import BottomLogo from "../components/bottomLogo";
 import CountDownTimer from "../components/countDownTimer";
 import InputCode from "./../components/confirmInput/confirmInput";
 import { useHistory } from "react-router-dom";
+import SingleInput from "../components/singleInput/singleInput";
 
 export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
-  const [phoneNumber, setPhoneNumber] = useState(" ");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [confirmCode, setConfirmCode] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -21,13 +21,22 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
   const history = useHistory();
 
   const dataLogin = Seeder[mode].options;
-  const inputsData = Seeder[mode].input_Attributes;
 
   const Modes = {
     SignUp: mode === "signup 1",
     GetConfirmCode: mode === "signup 2",
     PersonalInfo: mode === "signup 3",
     WellCome: mode === "wellcome",
+  };
+
+  const handleSubTitleClick = () => {
+    if (Modes.SignUp) {
+      onModeChange("go to login 1");
+      history.push("/login");
+    }
+    if (Modes.GetConfirmCode) {
+      console.log("request new code");
+    }
   };
 
   const validate = () => {
@@ -44,16 +53,25 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
       errors.email = "ایمیل ضروری است";
       errors.password = "رمز عبور ضروری است";
     }
-    console.log();
     return Object.keys(errors).length === 0 ? {} : errors;
   };
 
-  const handleSubTitleClick = () => {
-    onModeChange("go to login 1");
-    history.push("/login");
+  const validateProperty = (input) => {
+    if (input.name === "phoneNumber") {
+      if (input.value.trim() === "") return "شماره تلفن همراه ضروری است";
+    }
+    if (input.name === "password") {
+      if (input.value.trim() === "") return "رمز عبور ضروری است";
+    }
+    if (input.name === "email") {
+      if (input.value.trim() === "") return "ایمیل ضروری است";
+    }
+    if (input.name === "username") {
+      if (input.value.trim() === "") return " نام و نام خانوداگی ضروری است";
+    }
   };
 
-  const handleLogin = () => {
+  const handleSubmit = () => {
     const errors = validate();
     setErrors(errors || {});
     if (Object.keys(errors).length === 0) {
@@ -63,11 +81,32 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
 
   const handleSingleInput = (e) => {
     const inputValue = e.target.value;
-    if (Modes.SignUp) setPhoneNumber(inputValue);
+    const input = e.currentTarget;
+    const newErrors = { ...errors };
+    const errorMessage = validateProperty(input);
+    if (errorMessage) newErrors[input.name] = errorMessage;
+    else delete newErrors[input.name];
+    if (Modes.SignUp) {
+      if (/[^0-9]/.test(inputValue)) {
+        console.log("NAN");
+        return;
+      }
+      setPhoneNumber(inputValue);
+      setErrors(newErrors);
+    }
     if (Modes.PersonalInfo) {
-      if (e.target.name === "username") setUsername(inputValue);
-      if (e.target.name === "email") setEmail(inputValue);
-      if (e.target.name === "password") setPassword(inputValue);
+      if (e.target.name === "username") {
+        setErrors(newErrors);
+        setUsername(inputValue);
+      }
+      if (e.target.name === "email") {
+        setErrors(newErrors);
+        setEmail(inputValue);
+      }
+      if (e.target.name === "password") {
+        setErrors(newErrors);
+        setPassword(inputValue);
+      }
     }
   };
 
@@ -87,14 +126,13 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
         onSubTitleClick={handleSubTitleClick}
       />
       {Modes.SignUp && (
-        <Input
+        <SingleInput
           type={dataLogin.inputType}
           label={dataLogin.inputLabel}
-          placeholder={dataLogin.placeholder}
-          name={inputsData.name}
-          errors={errors[inputsData.name]}
-          onChange={handleSingleInput}
+          name={dataLogin.input_name}
+          errors={errors[dataLogin.input_name]}
           value={phoneNumber}
+          onComplete={handleSingleInput}
         />
       )}
       {Modes.GetConfirmCode && (
@@ -113,37 +151,34 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
       )}
       {Modes.PersonalInfo && (
         <React.Fragment>
-          <Input
+          <SingleInput
             type={dataLogin.inputTypeName}
             label={dataLogin.inputLabelName}
-            placeholder={dataLogin.placeholderName}
+            name={dataLogin.input_name_username}
+            errors={errors[dataLogin.input_name_username]}
             value={username}
-            name={inputsData.name_username}
-            errors={errors[inputsData.name_username]}
-            onChange={handleSingleInput}
+            onComplete={handleSingleInput}
           />
-          <Input
+          <SingleInput
             type={dataLogin.inputTypeEmail}
             label={dataLogin.inputLabeEmail}
-            placeholder={dataLogin.placeholderEmail}
             value={email}
-            name={inputsData.name_email}
-            errors={errors[inputsData.name_email]}
-            onChange={handleSingleInput}
+            name={dataLogin.input_name_email}
+            errors={errors[dataLogin.input_name_email]}
+            onComplete={handleSingleInput}
           />
-          <Input
+          <SingleInput
             type={dataLogin.inputTypePassword}
             label={dataLogin.inputLabelPassword}
-            placeholder={dataLogin.placeholderPassword}
             value={password}
-            name={inputsData.name_password}
-            errors={errors[inputsData.name_password]}
-            onChange={handleSingleInput}
+            name={dataLogin.input_name_password}
+            errors={errors[dataLogin.input_name_password]}
+            onComplete={handleSingleInput}
           />
         </React.Fragment>
       )}
 
-      <Button text={dataLogin.buttonText} onSubmit={handleLogin} />
+      <Button text={dataLogin.buttonText} onSubmit={handleSubmit} />
 
       <NavCircles mode={mode} dotCount={dotCount} />
       <BottomLogo />

@@ -35,7 +35,7 @@ const InputCode = ({ length, loading, onComplete }) => {
   };
 
   return (
-    <div className="code-input">
+    <div>
       <div className="code-inputs">
         {code.map((num, idx) => {
           return (
