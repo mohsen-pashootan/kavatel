@@ -99,6 +99,7 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
       {(Modes.Login || Modes.PassEnter) && (
         <SingleInput
           type={dataLogin.inputType}
+          inputMode={Modes.Login ? "numeric" : "text"}
           errors={errors[dataLogin.input_name]}
           label={dataLogin.inputLabel}
           name={dataLogin.input_name}

@@ -8,6 +8,7 @@ export default function SingleInput({
   errors,
   label,
   value,
+  inputMode,
 }) {
   return (
     <div className="input-wrapper">
@@ -16,6 +17,7 @@ export default function SingleInput({
           <input
             placeholder=" "
             type={type}
+            inputMode={inputMode}
             className={`fancy-input ${errors && "error"}`}
             name={name}
             value={value}

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./confirmInput.scss";
 
-const InputCode = ({ length, loading, onComplete }) => {
+const InputCode = ({ length, onComplete }) => {
   const [code, setCode] = useState([...Array(length)].map(() => ""));
   const inputs = useRef([]);
   // Typescript
@@ -46,7 +46,6 @@ const InputCode = ({ length, loading, onComplete }) => {
               maxLength={1}
               value={num}
               autoFocus={!code[0].length && idx === 0}
-              // readOnly={loading}
               onChange={(e) => processInput(e, idx)}
               onKeyUp={(e) => onKeyUp(e, idx)}
               ref={(ref) => inputs.current.push(ref)}
