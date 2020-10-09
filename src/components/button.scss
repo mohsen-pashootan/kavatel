@@ -1,0 +1,7 @@
+@import "../constants/styleVariables.scss";
+
+
+.submit_btn {
+    @include btn;
+  }
+
