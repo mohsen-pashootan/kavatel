@@ -1,0 +1,14 @@
+@import "../constants/styleVariables.scss";
+
+.dot-container {
+  @include dot_container;
+}
+
+.dot,
+.active-dot {
+  @include dot;
+}
+
+.active-dot {
+  @include active_dot;
+}

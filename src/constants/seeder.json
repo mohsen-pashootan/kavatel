@@ -1,0 +1,106 @@
+{
+    "login 1": {
+        "options": {
+            "srcLarge": "/focused_working_two_color.svg",
+            "altLarge": "focused_working_two_color",
+            "srcSmall": "/mobile_phone_two_color.svg",
+            "altSmall": "mobile_phone_two_color",
+            "title": "شماره موبایل خود را وارد کنید",
+            "subTitle": "هنوز ثبت نام نکردم",
+            "inputType": "text",
+            "inputLabel": "شماره موبایل",
+            "placeholder": "شماره موبایل",
+            "buttonText": "تایید"
+        },
+        "input_Attributes": {
+            "name": "phoneNumber",
+            "value": "phoneNumber"
+        }
+    },
+    "login 2": {
+        "options": {
+            "srcLarge": "/authentication_two_color.svg",
+            "altLarge": "authentication_two_color",
+            "srcSmall": "/password_two_color.svg",
+            "altSmall": "password_two_color",
+            "title": "رمز عبور خود را وارد کنید",
+            "subTitle": " رمز عبور را فراموش کردم",
+            "inputType": "password",
+            "inputLabel": "رمز عبور",
+            "placeholder": "رمز عبور",
+            "buttonText": "تایید"
+        },
+        "input_Attributes": {
+            "name": "password",
+            "value": "password"
+        }
+    },
+    "wellcome": {
+        "options": {
+            "srcLarge": "/handshake_two_color.svg",
+            "altLarge": "handshake_two_color",
+            "srcSmall": "/team_work_two_color.svg",
+            "altSmall": "team_work_two_color",
+            "title": "!به وبسایت کاواتل خوش آمدید",
+            "inputType": "",
+            "inputLabel": "",
+            "placeholder": "",
+            "buttonText": "بزن بریم"
+        }
+    },
+    "signup 1": {
+        "options": {
+            "srcLarge": "focused_working_two_color.svg",
+            "altLarge": "focused_working_two_color",
+            "srcSmall": "mobile_phone_two_color.svg",
+            "altSmall": "mobile_phone_two_color",
+            "title": "شماره موبایل خود را وارد کنید",
+            "subTitle": "قبلا ثبت نام کردم",
+            "inputType": "text",
+            "inputLabel": "شماره موبایل",
+            "placeholder": "شماره موبایل",
+            "buttonText": "تایید"
+        },
+        "input_Attributes": {
+            "name": "phoneNumber",
+            "value": "phoneNumber"
+        }
+    },
+    "signup 2": {
+        "options": {
+            "srcLarge": "/authentication_two_color_new.svg",
+            "altLarge": "authentication_two_color_new",
+            "srcSmall": "/loading__two_color.svg",
+            "altSmall": "loading__two_color",
+            "title": "کد ارسالی را در کادر زیر وارد کنید",
+            "subTitle": "ارسال مجدد کد فعال سازی",
+            "inputType": "text",
+            "buttonText": "تایید"
+        }
+    },
+    "signup 3": {
+        "options": {
+            "srcLarge": "/problem_solving_two_color.svg",
+            "altLarge": "problem_solving_two_color",
+            "srcSmall": "/mobile_testing_two_color.svg",
+            "altSmall": "mobile_testing_two_color",
+            "title": "لطفا اطلاعات حساب کاربری خود را کامل کنید",
+            "subTitle": "",
+            "inputTypeName": "text",
+            "inputTypeEmail": "email",
+            "inputTypePassword": "password",
+            "inputLabelName": "نام و نام خانوادگی",
+            "inputLabeEmail": "ایمیل",
+            "inputLabelPassword": "رمز عبور",
+            "placeholderName": "نام و نام خانوادگی",
+            "placeholderEmail": "ایمیل",
+            "placeholderPassword": "رمز عبور",
+            "buttonText": "تایید"
+        },
+        "input_Attributes": {
+            "name_username": "username",
+            "name_email": "email",
+            "name_password": "password"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+@import "../constants/styleVariables.scss";
+
+.page-title {
+  @include header_title;
+}
+
+.page-goes-to {
+  @include text_link;
+}
