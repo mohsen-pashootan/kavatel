@@ -1,4 +1,4 @@
-export const Seeder2 = {
+export const Seeder = {
   "login 1": {
     options: {
       srcLarge: "/focused_working_two_color.svg",
@@ -11,10 +11,7 @@ export const Seeder2 = {
       inputLabel: "شماره موبایل",
       placeholder: "شماره موبایل",
       buttonText: "تایید",
-    },
-    input_Attributes: {
-      name: "phoneNumber",
-      value: "phoneNumber",
+      input_name: "phoneNumber",
     },
   },
   "login 2": {
@@ -29,6 +26,7 @@ export const Seeder2 = {
       inputLabel: "رمز عبور",
       placeholder: "رمز عبور",
       buttonText: "تایید",
+      input_name: "password",
     },
   },
   wellcome: {
@@ -56,6 +54,7 @@ export const Seeder2 = {
       inputLabel: "شماره موبایل",
       placeholder: "شماره موبایل",
       buttonText: "تایید",
+      input_name: "phoneNumber",
     },
   },
   "signup 2": {
@@ -88,48 +87,9 @@ export const Seeder2 = {
       placeholderEmail: "ایمیل",
       placeholderPassword: "رمز عبور",
       buttonText: "تایید",
+      input_name_username: "username",
+      input_name_email: "email",
+      input_name_password: "password",
     },
   },
 };
-
-// export const data = [
-//   {
-//     mode: "login",
-//     srcLarge: "focused_working_two_color.svg",
-//     altLarge: "focused_working_two_color",
-//     srcSmall: "mobile_phone_two_color.svg",
-//     altSmall: "mobile_phone_two_color",
-//     title: "شماره موبایل خود را وارد کنید",
-//     inputType: "text",
-//     inputLabel: "شماره موبایل",
-//     placeholder: "شماره موبایل",
-//     buttonText: "تایید",
-//   },
-//   {
-//     mode: "enterPass",
-//     srcLarge: "/authentication_two_color.svg",
-//     altLarge: "authentication_two_color",
-//     srcSmall: "/password_two_color.svg",
-//     altSmall: "password_two_color",
-//     title: "رمز عبور خود را وارد کنید",
-//     inputType: "password",
-//     inputLabel: "رمز عبور",
-//     placeholder: "رمز عبور",
-//     buttonText: "تایید",
-//   },
-//   {
-//     mode: "wellcome",
-//     srcLarge: "/handshake_two_color.svg",
-//     altLarge: "handshake_two_color",
-//     srcSmall: "/team_work_two_color.svg",
-//     altSmall: "team_work_two_color",
-//     title: "!به وبسایت کاواتل خوش آمدید",
-//     inputType: "",
-//     inputLabel: "",
-//     placeholder: "",
-//     buttonText: "بزن بریم",
-//   },
-//   { mode: "signUp" },
-//   { mode: "getConfirmCode" },
-//   { mode: "personalInfo" },
-// ];

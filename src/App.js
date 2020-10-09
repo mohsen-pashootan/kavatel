@@ -3,7 +3,7 @@ import Loading from "./layout/loading";
 import Frame from "./layout/frame";
 import MessengerLogin from "./containers/messengerLogin";
 import MessengerSignUp from "./containers/messengerSignUp";
-import {Route , Switch , BrowserRouter as Router} from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,13 +43,21 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Frame>
-        <Route path='/login'>
-      <MessengerLogin mode={mode || "login 1"} onModeChange={handleMode} dotCount={dotCount} />
-        </Route>
-        <Route path='/signup'>
-      <MessengerSignUp mode={mode || "signup 1"} onModeChange={handleMode} dotCount={dotCount} />
-        </Route>
+        <Frame>
+          <Route path="/login">
+            <MessengerLogin
+              mode={mode || "login 1"}
+              onModeChange={handleMode}
+              dotCount={dotCount}
+            />
+          </Route>
+          <Route path="/signup">
+            <MessengerSignUp
+              mode={mode || "signup 1"}
+              onModeChange={handleMode}
+              dotCount={dotCount}
+            />
+          </Route>
         </Frame>
       </Switch>
     </Router>
