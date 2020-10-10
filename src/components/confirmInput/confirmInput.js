@@ -8,6 +8,7 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
   // useRef<(HTMLInputElement | null)[]>([])
 
   const processInput = (e, slot) => {
+    console.log(slot);
     const num = e.target.value;
     validate(e);
     if (/[^0-9]/.test(num)) {
@@ -25,16 +26,20 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
       onComplete(newCode.join(""));
     }
   };
-
-  const onKeyUp = (e, slot) => {
+  const onKeyDown = (e, slot) => {
     if (e.keyCode === 8 && !code[slot] && slot !== 0) {
       const newCode = [...code];
-      newCode[slot - 1] = "";
       setCode(newCode);
       inputs.current[slot - 1].focus();
     }
   };
 
+  const onKeyUp = (e, slot) => {
+    if (e.keyCode === 8 && !code[slot] && slot !== 0) {
+      onComplete("");
+      inputs.current[slot - 1].focus();
+    }
+  };
   return (
     <div>
       <div className="code-inputs">
@@ -52,6 +57,7 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
               autoFocus={!code[0].length && idx === 0}
               onChange={(e) => processInput(e, idx)}
               onKeyUp={(e) => onKeyUp(e, idx)}
+              onKeyDown={(e) => onKeyDown(e, idx)}
               ref={(ref) => inputs.current.push(ref)}
             />
           );
