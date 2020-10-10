@@ -1,19 +1,36 @@
 import React, { useState, useRef } from "react";
 import "./confirmInput.scss";
 
-const InputCode = ({ length, onComplete }) => {
+const InputCode = ({ length, onComplete, errors,validate }) => {
   const [code, setCode] = useState([...Array(length)].map(() => ""));
   const inputs = useRef([]);
   // Typescript
   // useRef<(HTMLInputElement | null)[]>([])
 
+  // const validateProperty = (input) => {
+  //   if (input.name === "confirmCode") {
+  //     if (input.value.trim() === "") return "کد فعال سازی ضروری است";
+  //   }
+  // };
+
+  console.log(errors);
   const processInput = (e, slot) => {
     const num = e.target.value;
+    // /////////validate/////////
+    // const input = e.currentTarget;
+    // const newErrors = { ...errors };
+    // const errorMessage = validateProperty(input);
+    // if (errorMessage) newErrors[input.name] = errorMessage;
+    // else delete newErrors[input.name];
+    // validate(newErrors);
+    // console.log(newErrors);
+    // ///////
+
     if (/[^0-9]/.test(num)) {
-      console.log("NAN");
+      // console.log("NAN");
       return;
     }
-    console.log("number");
+    // console.log("number");
     const newCode = [...code];
     newCode[slot] = num;
     setCode(newCode);
@@ -40,8 +57,10 @@ const InputCode = ({ length, onComplete }) => {
         {code.map((num, idx) => {
           return (
             <input
+              className={`${errors && "error"}`}
               key={idx}
               type="text"
+              name="confirmCode"
               inputMode="numeric"
               maxLength={1}
               value={num}
@@ -53,6 +72,7 @@ const InputCode = ({ length, onComplete }) => {
           );
         })}
       </div>
+      {errors && <div className="alert-input">{errors}</div>}
     </div>
   );
 };
