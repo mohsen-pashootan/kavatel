@@ -1,3 +1,5 @@
+@import "../../constants/styleVariables.scss";
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
@@ -30,12 +32,13 @@ label {
   transform-origin: left top;
   pointer-events: none;
 }
+
 .fancy-input {
   font-size: 1rem;
   outline: none;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 1rem 0.7rem;
+  padding: 16px 11.2px;
   color: gray;
   transition: max-width 50ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
@@ -53,12 +56,15 @@ label {
 }
 
 .error {
-  border-color: red !important ;
-  color: red !important;
+  @include errors;
 }
 
 .alert-input {
-  direction: rtl;
-  font-size: 12px;
-  color: red;
+  @include alert-input;
+}
+
+@media (max-width: $large) and (min-width: $small) {
+  .fancy-input {
+    padding: 10px 7px;
+  }
 }

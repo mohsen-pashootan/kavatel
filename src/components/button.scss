@@ -1,7 +1,11 @@
 @import "../constants/styleVariables.scss";
 
-
 .submit_btn {
-    @include btn;
-  }
+  @include btn;
+}
 
+@media (max-width: $large) and (min-width: $small) {
+  .submit_btn {
+    @include btn_responsvie;
+  }
+}

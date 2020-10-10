@@ -12,3 +12,17 @@
 .active-dot {
   @include active_dot;
 }
+
+@media (max-width: $large) and (min-width: $small) {
+  .dot-container {
+    @include dot_container_responsvie;
+  }
+  .dot,
+  .active-dot {
+    @include dot_responsvie;
+  }
+
+  .active-dot {
+    @include active_dot_responsvie;
+  }
+}

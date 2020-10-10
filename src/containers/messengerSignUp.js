@@ -20,6 +20,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
+  console.log(errors);
   const dataLogin = Seeder[mode].options;
 
   const Modes = {
@@ -45,6 +46,9 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     if (Modes.SignUp && phoneNumber.trim() === "")
       errors.phoneNumber = "شماره تلفن همراه ضروری است";
 
+    if (Modes.GetConfirmCode && confirmCode.trim() === "")
+      errors.confirmCode = "کد فعال سازی ضروری است";
+
     if (
       Modes.PersonalInfo &&
       (username.trim() === "" || email.trim() === "" || password.trim() === "")
@@ -59,6 +63,9 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
   const validateProperty = (input) => {
     if (input.name === "phoneNumber") {
       if (input.value.trim() === "") return "شماره تلفن همراه ضروری است";
+    }
+    if (input.name === "confirmCode") {
+      if (input.value.trim() === "") return "کد فعال سازی ضروری است";
     }
     if (input.name === "password") {
       if (input.value.trim() === "") return "رمز عبور ضروری است";
@@ -86,6 +93,8 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     const errorMessage = validateProperty(input);
     if (errorMessage) newErrors[input.name] = errorMessage;
     else delete newErrors[input.name];
+    console.log(newErrors);
+
     if (Modes.SignUp) {
       if (/[^0-9]/.test(inputValue)) {
         console.log("NAN");
@@ -143,6 +152,8 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
             onComplete={(code) => {
               setConfirmCode(code);
             }}
+            // errors={errors[dataLogin.input_name]}
+            // validate={(newErrors) => setErrors(newErrors)}
           />
           <section className="count-down-container">
             <p> زمان باقی مانده برای ورود کد </p>
