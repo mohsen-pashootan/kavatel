@@ -69,8 +69,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     if (input.name === "phoneNumber") {
       if (input.value.trim() === "") return "شماره تلفن همراه ضروری است";
     }
-    if (input.id === "0") {
-      console.log(input.value.trim() === "");
+    if (input.name === "confirmCode") {
       if (input.value.trim() === "") return "کد فعال سازی ضروری است";
     }
     if (input.name === "password") {
@@ -99,8 +98,6 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     const errorMessage = validateProperty(input);
     if (errorMessage) newErrors[input.name] = errorMessage;
     else delete newErrors[input.name];
-    // console.log(input);
-    // console.log(errorMessage);
 
     if (Modes.SignUp) {
       if (/[^0-9]/.test(inputValue)) {
