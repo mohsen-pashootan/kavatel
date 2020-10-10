@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-export default function CountDownTimer({ min }) {
-  const [minute, setMinute] = useState(min);
-  const [sec, setSec] = useState("00");
+export default function CountDownTimer({ startMin,startSec }) {
+  const [minute, setMinute] = useState(startMin);
+  const [sec, setSec] = useState(startSec || "00");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,6 +20,7 @@ export default function CountDownTimer({ min }) {
     }, 1000);
     return () => clearInterval(timer);
   }, [minute, sec]);
+
 
   return <span> {`${minute} : ${sec} `} </span>;
 }
