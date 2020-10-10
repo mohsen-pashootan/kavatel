@@ -1,31 +1,15 @@
 import React, { useState, useRef } from "react";
 import "./confirmInput.scss";
 
-const InputCode = ({ length, onComplete, errors,validate }) => {
+const InputCode = ({ length, onComplete, errors, validate }) => {
   const [code, setCode] = useState([...Array(length)].map(() => ""));
   const inputs = useRef([]);
   // Typescript
   // useRef<(HTMLInputElement | null)[]>([])
 
-  // const validateProperty = (input) => {
-  //   if (input.name === "confirmCode") {
-  //     if (input.value.trim() === "") return "کد فعال سازی ضروری است";
-  //   }
-  // };
-
-  console.log(errors);
   const processInput = (e, slot) => {
     const num = e.target.value;
-    // /////////validate/////////
-    // const input = e.currentTarget;
-    // const newErrors = { ...errors };
-    // const errorMessage = validateProperty(input);
-    // if (errorMessage) newErrors[input.name] = errorMessage;
-    // else delete newErrors[input.name];
-    // validate(newErrors);
-    // console.log(newErrors);
-    // ///////
-
+    validate(e);
     if (/[^0-9]/.test(num)) {
       // console.log("NAN");
       return;
@@ -59,6 +43,7 @@ const InputCode = ({ length, onComplete, errors,validate }) => {
             <input
               className={`${errors && "error"}`}
               key={idx}
+              id={idx}
               type="text"
               name="confirmCode"
               inputMode="numeric"

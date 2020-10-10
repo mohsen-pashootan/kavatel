@@ -20,7 +20,6 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
-  console.log(errors);
   const dataLogin = Seeder[mode].options;
 
   const Modes = {
@@ -49,14 +48,20 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     if (Modes.GetConfirmCode && confirmCode.trim() === "")
       errors.confirmCode = "کد فعال سازی ضروری است";
 
-    if (
-      Modes.PersonalInfo &&
-      (username.trim() === "" || email.trim() === "" || password.trim() === "")
-    ) {
-      errors.username = "نام و نام خانوادگی ضروری است";
-      errors.email = "ایمیل ضروری است";
-      errors.password = "رمز عبور ضروری است";
+    if (Modes.PersonalInfo) {
+      const pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+      if (username.trim() === "")
+        errors.username = "نام و نام خانوادگی ضروری است";
+
+      if (email.trim() === "") errors.email = "ایمیل ضروری است";
+      else if (!pattern.test(email))
+        errors.email = "لطفا ایمیل معتبری وارد نمایید";
+
+      if (password.trim() === "") errors.password = "رمز عبور ضروری است";
     }
+
     return Object.keys(errors).length === 0 ? {} : errors;
   };
 
@@ -64,7 +69,8 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     if (input.name === "phoneNumber") {
       if (input.value.trim() === "") return "شماره تلفن همراه ضروری است";
     }
-    if (input.name === "confirmCode") {
+    if (input.id === "0") {
+      console.log(input.value.trim() === "");
       if (input.value.trim() === "") return "کد فعال سازی ضروری است";
     }
     if (input.name === "password") {
@@ -93,7 +99,8 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
     const errorMessage = validateProperty(input);
     if (errorMessage) newErrors[input.name] = errorMessage;
     else delete newErrors[input.name];
-    console.log(newErrors);
+    // console.log(input);
+    // console.log(errorMessage);
 
     if (Modes.SignUp) {
       if (/[^0-9]/.test(inputValue)) {
@@ -101,6 +108,9 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
         return;
       }
       setPhoneNumber(inputValue);
+      setErrors(newErrors);
+    }
+    if (Modes.GetConfirmCode) {
       setErrors(newErrors);
     }
     if (Modes.PersonalInfo) {
@@ -149,15 +159,15 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
         <React.Fragment>
           <InputCode
             length={5}
+            validate={(e) => handleSingleInput(e)}
+            errors={errors[dataLogin.input_name]}
             onComplete={(code) => {
               setConfirmCode(code);
             }}
-            // errors={errors[dataLogin.input_name]}
-            // validate={(newErrors) => setErrors(newErrors)}
           />
           <section className="count-down-container">
             <p> زمان باقی مانده برای ورود کد </p>
-            <CountDownTimer min={2} />
+            <CountDownTimer startMin={2} />
           </section>
         </React.Fragment>
       )}
