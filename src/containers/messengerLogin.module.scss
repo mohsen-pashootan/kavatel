@@ -1,0 +1,11 @@
+@import "../constants/styleVariables.module.scss";
+
+.chat-container {
+  @include container;
+}
+
+@media (max-width: $large) and (min-width: $small) {
+  .chat-container {
+    @include container_responsvie;
+  }
+}

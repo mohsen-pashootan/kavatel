@@ -1,0 +1,18 @@
+@import "../constants/styleVariables.module.scss";
+
+.page-title {
+  @include header_title;
+}
+
+.page-goes-to {
+  @include text_link;
+}
+
+@media (max-width: $large) and (min-width: $small) {
+  .page-title {
+    @include header_title_responsvie;
+  }
+  .page-goes-to {
+    @include text_link_responsvie;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./messengerSignUp.scss";
+import styles from "./messengerSignUp.module.scss";
 import Button from "../components/button";
 import FancyImage from "../components/fancyImage";
 import NavCircles from "../components/navCircles";
@@ -101,7 +101,6 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
 
     if (Modes.SignUp) {
       if (/[^0-9]/.test(inputValue)) {
-        console.log("NAN");
         return;
       }
       setPhoneNumber(inputValue);
@@ -127,7 +126,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
   };
 
   return (
-    <div className="chat-container">
+    <div className={styles["chat-container"]}>
       <FancyImage
         srcLarge={dataLogin.srcLarge}
         altLarge={dataLogin.altLarge}
@@ -162,7 +161,7 @@ export default function MessengerSignUp({ mode, onModeChange, dotCount }) {
               setConfirmCode(code);
             }}
           />
-          <section className="count-down-container">
+          <section className={styles["count-down-container"]}>
             <p> زمان باقی مانده برای ورود کد </p>
             <CountDownTimer startMin={2} />
           </section>

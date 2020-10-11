@@ -1,5 +1,5 @@
 import React from "react";
-import "./singleInput.scss";
+import styles from "./singleInput.module.scss";
 
 export default function SingleInput({
   onComplete,
@@ -11,24 +11,30 @@ export default function SingleInput({
   inputMode,
 }) {
   return (
-    <div className="input-wrapper">
-      <div className="input-container">
-        <div className={`material-textfield ${errors && "error"}`}>
+    <div className={styles["input-wrapper"]}>
+      <div className={styles["input-container"]}>
+        <div
+          className={
+            styles["material-textfield"] + " " + (errors && styles["error"])
+          }
+        >
           <input
             placeholder=" "
             type={type}
             inputMode={inputMode}
-            className={`fancy-input ${errors && "error"}`}
+            className={
+              styles["fancy-input"] + " " + (errors && styles["error"])
+            }
             name={name}
             value={value}
             onChange={(e) => onComplete(e)}
           />
-          <label className={`${errors && "error"}`}>
+          <label className={errors && styles["error"]}>
             {errors ? "خطا" : label}
           </label>
         </div>
       </div>
-      {errors && <div className="alert-input">{errors}</div>}
+      {errors && <div className={styles["alert-input"]}>{errors}</div>}
     </div>
   );
 }

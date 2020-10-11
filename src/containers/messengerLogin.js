@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./messengerLogin.scss";
+import styles from "./messengerLogin.module.scss";
 import Button from "../components/button";
 import FancyImage from "../components/fancyImage";
 import NavCircles from "../components/navCircles";
@@ -82,7 +82,7 @@ export default function MessengerLogin({ mode, onModeChange, dotCount }) {
   };
 
   return (
-    <div className="chat-container">
+    <div className={styles["chat-container"]}>
       <FancyImage
         srcLarge={dataLogin.srcLarge}
         altLarge={dataLogin.altLarge}

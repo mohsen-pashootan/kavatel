@@ -1,10 +1,11 @@
 import React from "react";
-import "./frame.scss";
+import styles from "./frame.module.scss";
 
 export default function Frame({ children }) {
   return (
-    <div className="app-wrapper">
-      <div className="app-container">{children}</div>
+    <div className={styles["app-wrapper"]}>
+      <div className={styles["app-container"]}>{children}</div>
     </div>
+   
   );
 }
