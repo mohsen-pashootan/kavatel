@@ -1,8 +1,8 @@
 import React from "react";
-import "./bottomLogo.scss";
+import styles from "./bottomLogo.module.scss";
 
 export default function BottomLogo() {
   return (
-    <img src="/kavano-logo.svg" alt="kavano logo" className="logo-bottom" />
+    <img src="/kavano-logo.svg" alt="kavano logo" className={styles["logo-bottom"]} />
   );
 }

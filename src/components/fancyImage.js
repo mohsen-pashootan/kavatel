@@ -1,11 +1,11 @@
 import React from "react";
-import "./fancyImage.scss";
+import styles from "./fancyImage.module.scss";
 
 export default function FancyImage({ srcLarge, altLarge, srcSmall, altSmall }) {
   return (
     <>
-      <img className="img-large" src={srcLarge} alt={altLarge} />
-      <img className="img-small" src={srcSmall} alt={altSmall} />
+      <img className={styles["img-large"]} src={srcLarge} alt={altLarge} />
+      <img className={styles["img-small"]} src={srcSmall} alt={altSmall} />
     </>
   );
 }

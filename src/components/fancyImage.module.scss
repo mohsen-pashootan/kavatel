@@ -1,0 +1,19 @@
+@import "../constants/styleVariables.module.scss";
+
+.img-large {
+    @include show_image;
+  }
+  
+  .img-small {
+    @include hide_image;
+  }
+  
+  @media (max-width: $large) and (min-width: $small) {
+    .img-large {
+      @include hide_image;
+    }
+  
+    .img-small {
+      @include show_image_responsvie;
+    }
+  }

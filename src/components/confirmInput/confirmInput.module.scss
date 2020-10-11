@@ -1,0 +1,35 @@
+@import "../../constants/styleVariables.module.scss";
+
+.code-inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.code-inputs input {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  margin: 0 4px;
+  border: 2px solid #4f5b66;
+  font-size: 20px;
+}
+
+.code-inputs input:focus {
+  outline: none;
+}
+
+.error {
+  @include errors;
+}
+
+.alert-input {
+  @include alert-input;
+}

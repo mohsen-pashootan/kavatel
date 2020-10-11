@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./confirmInput.scss";
+import styles from "./confirmInput.module.scss";
 
 const InputCode = ({ length, onComplete, errors, validate }) => {
   const [code, setCode] = useState([...Array(length)].map(() => ""));
@@ -8,7 +8,6 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
   // useRef<(HTMLInputElement | null)[]>([])
 
   const processInput = (e, slot) => {
-    console.log(slot);
     const num = e.target.value;
     validate(e);
     if (/[^0-9]/.test(num)) {
@@ -26,6 +25,7 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
       onComplete(newCode.join(""));
     }
   };
+
   const onKeyDown = (e, slot) => {
     if (e.keyCode === 8 && !code[slot] && slot !== 0) {
       const newCode = [...code];
@@ -40,13 +40,14 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
       inputs.current[slot - 1].focus();
     }
   };
+
   return (
     <div>
-      <div className="code-inputs">
+      <div className={styles["code-inputs"]}>
         {code.map((num, idx) => {
           return (
             <input
-              className={`${errors && "error"}`}
+              className={errors && styles["error"]}
               key={idx}
               id={idx}
               type="text"
@@ -63,7 +64,7 @@ const InputCode = ({ length, onComplete, errors, validate }) => {
           );
         })}
       </div>
-      {errors && <div className="alert-input">{errors}</div>}
+      {errors && <div className={styles["alert-input"]}>{errors}</div>}
     </div>
   );
 };
